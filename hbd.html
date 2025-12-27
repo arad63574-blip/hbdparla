@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Ninimmm! 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Press Start 2P', cursive;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .pixel-btn {
+            background: linear-gradient(180deg, #ff9ecd 0%, #ff69b4 50%, #ff1493 100%);
+            border: 4px solid #fff;
+            padding: 20px 40px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+            image-rendering: pixelated;
+            box-shadow: 
+                4px 4px 0 #000,
+                inset -4px -4px 0 rgba(0,0,0,0.3),
+                inset 4px 4px 0 rgba(255,255,255,0.3);
+            transition: transform 0.1s;
+            text-shadow: 2px 2px 0 #000;
+        }
+        
+        .pixel-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .pixel-btn:active {
+            transform: scale(0.95);
+            box-shadow: 
+                2px 2px 0 #000,
+                inset -4px -4px 0 rgba(0,0,0,0.3),
+                inset 4px 4px 0 rgba(255,255,255,0.3);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .question-container {
+            background: linear-gradient(180deg, #2a1a2a 0%, #1a0a1a 100%);
+            border: 4px solid #ff69b4;
+            padding: 30px;
+            max-width: 500px;
+            box-shadow: 
+                8px 8px 0 #000,
+                inset 0 0 20px rgba(255,105,180,0.2);
+        }
+        
+        .question-text {
+            color: #ff9ecd;
+            font-size: 11px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+        
+        .hint-text {
+            color: #ffeb3b;
+            font-size: 8px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            text-shadow: 0 0 10px #ffeb3b;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .hint-text.show {
+            opacity: 1;
+        }
+        
+        .pixel-input {
+            background: #0a0a0a;
+            border: 3px solid #ff69b4;
+            padding: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            color: #ff9ecd;
+            width: 100%;
+            margin-bottom: 20px;
+            outline: none;
+            box-shadow: inset 4px 4px 0 rgba(0,0,0,0.5);
+        }
+        
+        .pixel-input:focus {
+            border-color: #ff1493;
+            box-shadow: 
+                inset 4px 4px 0 rgba(0,0,0,0.5),
+                0 0 15px rgba(255,20,147,0.5);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(180deg, #ff69b4 0%, #ff1493 100%);
+            border: 3px solid #fff;
+            padding: 12px 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 #000;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(180deg, #ff9ecd 0%, #ff69b4 100%);
+        }
+        
+        .error-msg {
+            color: #ff4444;
+            font-size: 8px;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .error-msg.show {
+            opacity: 1;
+        }
+        
+        /* Glitch effect */
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .glitch-active {
+            animation: glitch 0.5s ease-in-out;
+        }
+        
+        @keyframes glitch {
+            0% { 
+                background: transparent;
+                filter: none;
+            }
+            10% { 
+                background: rgba(255,20,147,0.3);
+                transform: translate(-5px, 2px);
+            }
+            20% { 
+                background: rgba(0,255,255,0.2);
+                transform: translate(5px, -2px);
+            }
+            30% { 
+                background: rgba(255,105,180,0.4);
+                transform: translate(-3px, -3px);
+            }
+            40% { 
+                background: transparent;
+                transform: translate(3px, 3px);
+            }
+            50% { 
+                background: rgba(255,20,147,0.2);
+                transform: translate(-2px, 2px);
+            }
+            60% { 
+                background: rgba(0,255,255,0.3);
+                transform: translate(2px, -2px);
+            }
+            70% { 
+                background: rgba(255,105,180,0.2);
+                transform: translate(-1px, 1px);
+            }
+            80% { 
+                background: transparent;
+                transform: translate(1px, -1px);
+            }
+            100% { 
+                background: transparent;
+                transform: translate(0, 0);
+            }
+        }
+        
+        /* Balloons */
+        .balloon {
+            position: fixed;
+            width: 40px;
+            height: 50px;
+            border-radius: 50% 50% 50% 50%;
+            image-rendering: pixelated;
+            animation: floatUp 4s ease-in-out infinite;
+            z-index: 100;
+        }
+        
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background: #fff;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkleAnim 1.5s ease-in-out infinite;
+            z-index: 100;
+        }
+        
+        @keyframes sparkleAnim {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.5; }
+        }
+        
+        /* Birthday message */
+        .birthday-container {
+            text-align: center;
+            z-index: 200;
+        }
+        
+        .birthday-text {
+            color: #ff9ecd;
+            font-size: 14px;
+            line-height: 2.5;
+            text-shadow: 
+                0 0 10px #ff69b4,
+                0 0 20px #ff1493,
+                0 0 30px #ff69b4;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #ff69b4;
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Locked box */
+        .locked-box {
+            margin-top: 40px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(180deg, #4a2a4a 0%, #2a1a2a 100%);
+            border: 4px solid #ff69b4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 
+                6px 6px 0 #000,
+                inset 0 0 20px rgba(255,105,180,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .locked-box:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                8px 8px 0 #000,
+                inset 0 0 30px rgba(255,105,180,0.5),
+                0 0 20px rgba(255,105,180,0.3);
+        }
+        
+        .lock-icon {
+            font-size: 40px;
+            color: #ff69b4;
+            text-shadow: 0 0 10px #ff1493;
+        }
+        
+        .lock-icon.unlocked {
+            animation: unlock 0.5s ease-out;
+        }
+        
+        @keyframes unlock {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg) scale(1.2); }
+        }
+        
+        /* Final message */
+        .final-message {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(180deg, #ff69b4 0%, #ff1493 100%);
+            border: 4px solid #fff;
+            box-shadow: 
+                8px 8px 0 #000,
+                0 0 30px rgba(255,105,180,0.5);
+            animation: popIn 0.5s ease-out;
+        }
+        
+        .final-message p {
+            color: #fff;
+            font-size: 12px;
+            line-height: 2;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Hearts floating */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: floatHeart 3s ease-in-out infinite;
+            z-index: 50;
+        }
+        
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+        }
+        
+        /* Snake Game Styles */
+        .game-container {
+            text-align: center;
+            z-index: 200;
+        }
+        
+        .game-title {
+            color: #ff9ecd;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+        
+        .game-canvas {
+            border: 4px solid #ff69b4;
+            background: #1a0a1a;
+            box-shadow: 
+                8px 8px 0 #000,
+                0 0 20px rgba(255,105,180,0.3);
+            image-rendering: pixelated;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        .score-display, .apples-display {
+            color: #ff9ecd;
+            font-size: 10px;
+            text-shadow: 0 0 5px #ff69b4;
+        }
+        
+        .help-section {
+            background: linear-gradient(180deg, #2a1a2a 0%, #1a0a1a 100%);
+            border: 3px solid #ff69b4;
+            padding: 15px;
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .help-title {
+            color: #ffeb3b;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .help-text {
+            color: #ff9ecd;
+            font-size: 8px;
+            line-height: 2;
+        }
+        
+        /* Cake Container */
+        .cake-container {
+            text-align: center;
+            z-index: 300;
+        }
+        
+        .cake-canvas {
+            image-rendering: pixelated;
+        }
+        
+        .blow-instruction {
+            color: #ffeb3b;
+            font-size: 12px;
+            margin-top: 20px;
+            animation: pulse 1s infinite;
+            text-shadow: 0 0 10px #ffeb3b;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        .volume-meter {
+            width: 200px;
+            height: 20px;
+            background: #1a0a1a;
+            border: 3px solid #ff69b4;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        .volume-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+            width: 0%;
+            transition: width 0.1s;
+        }
+        
+        .final-birthday-msg {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(180deg, #ff69b4 0%, #ff1493 100%);
+            border: 4px solid #fff;
+            box-shadow: 
+                8px 8px 0 #000,
+                0 0 30px rgba(255,105,180,0.5);
+            animation: popIn 0.5s ease-out;
+        }
+        
+        .final-birthday-msg p {
+            color: #fff;
+            font-size: 12px;
+            line-height: 2;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+        
+        /* Explosion particles */
+        .explosion-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            image-rendering: pixelated;
+            pointer-events: none;
+            z-index: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="glitch-overlay" id="glitchOverlay"></div>
+    
+    <div class="container">
+        <!-- Initial Button -->
+        <button class="pixel-btn" id="startBtn">Click on me Nini 💕</button>
+        
+        <!-- Question Container -->
+        <div class="question-container hidden" id="questionContainer">
+            <p class="question-text">✨ How much do you think I love you? (in terms of math) ✨</p>
+            <p class="hint-text" id="hintText">💡 Hint: infinity in terms of algebra and math... think about tan(π/2) 💡</p>
+            <input type="text" class="pixel-input" id="answerInput" placeholder="Type your answer...">
+            <button class="submit-btn" id="submitBtn">Submit 💖</button>
+            <p class="error-msg" id="errorMsg">Try again, baby! 💔</p>
+        </div>
+        
+        <!-- Birthday Container -->
+        <div class="birthday-container hidden" id="birthdayContainer">
+            <div class="birthday-text" id="birthdayText"></div>
+            <div class="locked-box hidden" id="lockedBox">
+                <span class="lock-icon" id="lockIcon">🔒</span>
+            </div>
+            <div class="final-message hidden" id="finalMessage">
+                <p>Now let's play a game! 🎮💕</p>
+            </div>
+        </div>
+        
+        <!-- Snake Game Container -->
+        <div class="game-container hidden" id="gameContainer">
+            <h2 class="game-title">🐍 Snake Game for Nini 🐍</h2>
+            <canvas id="gameCanvas" class="game-canvas" width="400" height="400"></canvas>
+            <div class="game-info">
+                <span class="score-display">Score: <span id="scoreDisplay">0</span></span>
+                <span class="apples-display">Apples: <span id="applesDisplay">0</span>/10 🍎</span>
+            </div>
+            <div class="help-section">
+                <h3 class="help-title">📖 HELP 📖</h3>
+                <p class="help-text">
+                    Move with WASD keys<br>
+                    Eat apples until the snake is full<br>
+                    (The snake will be full after 10 apples! 🍎)
+                </p>
+            </div>
+        </div>
+        
+        <!-- Cake Container -->
+        <div class="cake-container hidden" id="cakeContainer">
+            <canvas id="cakeCanvas" class="cake-canvas" width="400" height="400"></canvas>
+            <p class="blow-instruction" id="blowInstruction">🎤 Blow into your microphone to blow out the candles! 🎤</p>
+            <div class="volume-meter">
+                <div class="volume-bar" id="volumeBar"></div>
+            </div>
+            <div class="final-birthday-msg hidden" id="finalBirthdayMsg">
+                <p>mwah, love you bby,<br>happy birthdayyy 💕✨🎂</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const startBtn = document.getElementById('startBtn');
+        const questionContainer = document.getElementById('questionContainer');
+        const answerInput = document.getElementById('answerInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const hintText = document.getElementById('hintText');
+        const glitchOverlay = document.getElementById('glitchOverlay');
+        const birthdayContainer = document.getElementById('birthdayContainer');
+        const birthdayText = document.getElementById('birthdayText');
+        const lockedBox = document.getElementById('lockedBox');
+        const lockIcon = document.getElementById('lockIcon');
+        const finalMessage = document.getElementById('finalMessage');
+        const gameContainer = document.getElementById('gameContainer');
+        const gameCanvas = document.getElementById('gameCanvas');
+        const cakeContainer = document.getElementById('cakeContainer');
+        const cakeCanvas = document.getElementById('cakeCanvas');
+        
+        const birthdayMessage = "Happy Birthday, my beautiful Nini! 🎂💕 Today is your special day and I want you to know how much you mean to me... You make every single day brighter just by being you. ✨ I'm so lucky to have you in my life! 💖 Here's to another amazing year of us together! 🌸";
+        
+        let wrongAttempts = 0;
+        
+        // Start button click
+        startBtn.addEventListener('click', () => {
+            startBtn.classList.add('hidden');
+            questionContainer.classList.remove('hidden');
+            questionContainer.style.animation = 'popIn 0.5s ease-out';
+        });
+        
+        // Submit answer
+        submitBtn.addEventListener('click', checkAnswer);
+        answerInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkAnswer();
+        });
+        
+        function checkAnswer() {
+            const answer = answerInput.value.toLowerCase().trim().replace(/\s/g, '');
+            const validAnswers = ['tanπ/2', 'tan(π/2)', 'tanpi/2', 'tan(pi/2)', 'tan90', 'tan(90)', 'infinity', '∞', 'undefined'];
+            
+            if (validAnswers.some(valid => answer.includes(valid.replace(/\s/g, '')))) {
+                triggerGlitch();
+            } else {
+                wrongAttempts++;
+                errorMsg.classList.add('show');
+                setTimeout(() => errorMsg.classList.remove('show'), 2000);
+                
+                if (wrongAttempts >= 2) {
+                    hintText.classList.add('show');
+                }
+            }
+        }
+        
+        function triggerGlitch() {
+            glitchOverlay.classList.add('glitch-active');
+            
+            setTimeout(() => {
+                glitchOverlay.classList.remove('glitch-active');
+                questionContainer.classList.add('hidden');
+                showCelebration();
+            }, 500);
+        }
+        
+        function showCelebration() {
+            createBalloons();
+            createSparkles();
+            createHearts();
+            
+            birthdayContainer.classList.remove('hidden');
+            
+            typeMessage(birthdayMessage, 0);
+        }
+        
+        function createBalloons() {
+            const colors = ['#ff69b4', '#ff9ecd', '#ff1493', '#ffb6c1', '#db7093'];
+            for (let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.bottom = -100 + 'px';
+                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDelay = Math.random() * 2 + 's';
+                balloon.style.animationDuration = (3 + Math.random() * 2) + 's';
+                document.body.appendChild(balloon);
+                
+                animateBalloon(balloon);
+            }
+        }
+        
+        function animateBalloon(balloon) {
+            let pos = -100;
+            const speed = 1 + Math.random();
+            
+            function rise() {
+                pos += speed;
+                balloon.style.bottom = pos + 'px';
+                
+                if (pos < window.innerHeight + 100) {
+                    requestAnimationFrame(rise);
+                }
+            }
+            rise();
+        }
+        
+        function createSparkles() {
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                sparkle.style.animationDelay = Math.random() * 1.5 + 's';
+                sparkle.style.background = Math.random() > 0.5 ? '#fff' : '#ff69b4';
+                document.body.appendChild(sparkle);
+            }
+        }
+        
+        function createHearts() {
+            const hearts = ['💕', '💖', '💗', '💝', '💘'];
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(heart);
+            }
+        }
+        
+        function typeMessage(message, index) {
+            if (index < message.length) {
+                birthdayText.innerHTML = message.substring(0, index + 1) + '<span class="typing-cursor"></span>';
+                setTimeout(() => typeMessage(message, index + 1), 50);
+            } else {
+                birthdayText.innerHTML = message;
+                setTimeout(() => {
+                    lockedBox.classList.remove('hidden');
+                    lockedBox.style.animation = 'popIn 0.5s ease-out';
+                }, 500);
+            }
+        }
+        
+        // Locked box click
+        lockedBox.addEventListener('click', () => {
+            lockIcon.textContent = '🔓';
+            lockIcon.classList.add('unlocked');
+            
+            setTimeout(() => {
+                lockedBox.classList.add('hidden');
+                finalMessage.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    birthdayContainer.classList.add('hidden');
+                    clearDecorations();
+                    startSnakeGame();
+                }, 2000);
+            }, 500);
+        });
+        
+        function clearDecorations() {
+            document.querySelectorAll('.balloon, .sparkle, .heart').forEach(el => el.remove());
+        }
+        
+        // ===================== SNAKE GAME =====================
+        let snake, apple, direction, gameLoop, score, applesEaten, gameCtx;
+        const gridSize = 20;
+        const tileCount = 20;
+        
+        function startSnakeGame() {
+            gameContainer.classList.remove('hidden');
+            gameContainer.style.animation = 'popIn 0.5s ease-out';
+            
+            gameCtx = gameCanvas.getContext('2d');
+            
+            snake = [{x: 10, y: 10}];
+            direction = {x: 0, y: 0};
+            score = 0;
+            applesEaten = 0;
+            
+            spawnApple();
+            
+            document.addEventListener('keydown', handleKeyPress);
+            
+            gameLoop = setInterval(updateGame, 150);
+        }
+        
+        function handleKeyPress(e) {
+            switch(e.key.toLowerCase()) {
+                case 'w':
+                    if (direction.y !== 1) { direction = {x: 0, y: -1}; }
+                    break;
+                case 's':
+                    if (direction.y !== -1) { direction = {x: 0, y: 1}; }
+                    break;
+                case 'a':
+                    if (direction.x !== 1) { direction = {x: -1, y: 0}; }
+                    break;
+                case 'd':
+                    if (direction.x !== -1) { direction = {x: 1, y: 0}; }
+                    break;
+            }
+        }
+        
+        function spawnApple() {
+            apple = {
+                x: Math.floor(Math.random() * tileCount),
+                y: Math.floor(Math.random() * tileCount)
+            };
+            
+            // Make sure apple doesn't spawn on snake
+            for (let segment of snake) {
+                if (segment.x === apple.x && segment.y === apple.y) {
+                    spawnApple();
+                    return;
+                }
+            }
+        }
+        
+        function updateGame() {
+            // Move snake
+            if (direction.x !== 0 || direction.y !== 0) {
+                const head = {
+                    x: snake[0].x + direction.x,
+                    y: snake[0].y + direction.y
+                };
+                
+                // Wrap around walls
+                if (head.x < 0) head.x = tileCount - 1;
+                if (head.x >= tileCount) head.x = 0;
+                if (head.y < 0) head.y = tileCount - 1;
+                if (head.y >= tileCount) head.y = 0;
+                
+                // Check self collision
+                for (let segment of snake) {
+                    if (segment.x === head.x && segment.y === head.y) {
+                        // Reset snake on collision
+                        snake = [{x: 10, y: 10}];
+                        direction = {x: 0, y: 0};
+                        return;
+                    }
+                }
+                
+                snake.unshift(head);
+                
+                // Check apple collision
+                if (head.x === apple.x && head.y === apple.y) {
+                    score += 10;
+                    applesEaten++;
+                    document.getElementById('scoreDisplay').textContent = score;
+                    document.getElementById('applesDisplay').textContent = applesEaten;
+                    
+                    if (applesEaten >= 10) {
+                        // Snake is full!
+                        clearInterval(gameLoop);
+                        snakeExplosion();
+                        return;
+                    }
+                    
+                    spawnApple();
+                } else {
+                    snake.pop();
+                }
+            }
+            
+            drawGame();
+        }
+        
+        function drawGame() {
+            // Clear canvas
+            gameCtx.fillStyle = '#1a0a1a';
+            gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+            
+            // Draw grid (subtle)
+            gameCtx.strokeStyle = '#2a1a2a';
+            gameCtx.lineWidth = 1;
+            for (let i = 0; i <= tileCount; i++) {
+                gameCtx.beginPath();
+                gameCtx.moveTo(i * gridSize, 0);
+                gameCtx.lineTo(i * gridSize, gameCanvas.height);
+                gameCtx.stroke();
+                gameCtx.beginPath();
+                gameCtx.moveTo(0, i * gridSize);
+                gameCtx.lineTo(gameCanvas.width, i * gridSize);
+                gameCtx.stroke();
+            }
+            
+            // Draw apple (pixel art style)
+            drawPixelApple(apple.x * gridSize, apple.y * gridSize);
+            
+            // Draw snake (pixel art style)
+            snake.forEach((segment, index) => {
+                if (index === 0) {
+                    // Head
+                    drawPixelSnakeHead(segment.x * gridSize, segment.y * gridSize);
+                } else {
+                    // Body
+                    drawPixelSnakeBody(segment.x * gridSize, segment.y * gridSize);
+                }
+            });
+        }
+        
+        function drawPixelApple(x, y) {
+            const ctx = gameCtx;
+            const s = gridSize / 8; // pixel size
+            
+            // Apple body
+            ctx.fillStyle = '#ff1493';
+            ctx.fillRect(x + 2*s, y + 1*s, 4*s, 6*s);
+            ctx.fillRect(x + 1*s, y + 2*s, 6*s, 4*s);
+            
+            // Highlight
+            ctx.fillStyle = '#ff69b4';
+            ctx.fillRect(x + 2*s, y + 2*s, 2*s, 2*s);
+            
+            // Stem
+            ctx.fillStyle = '#4a2a4a';
+            ctx.fillRect(x + 3*s, y, 2*s, 2*s);
+            
+            // Leaf
+            ctx.fillStyle = '#00ff00';
+            ctx.fillRect(x + 5*s, y, 2*s, s);
+        }
+        
+        function drawPixelSnakeHead(x, y) {
+            const ctx = gameCtx;
+            const s = gridSize / 8;
+            
+            // Head base
+            ctx.fillStyle = '#ff69b4';
+            ctx.fillRect(x + s, y + s, 6*s, 6*s);
+            
+            // Eyes
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(x + 2*s, y + 2*s, 2*s, 2*s);
+            ctx.fillRect(x + 5*s, y + 2*s, 2*s, 2*s);
+            
+            // Pupils
+            ctx.fillStyle = '#000';
+            ctx.fillRect(x + 3*s, y + 3*s, s, s);
+            ctx.fillRect(x + 6*s, y + 3*s, s, s);
+            
+            // Blush
+            ctx.fillStyle = '#ff1493';
+            ctx.fillRect(x + s, y + 4*s, s, 2*s);
+            ctx.fillRect(x + 6*s, y + 4*s, s, 2*s);
+        }
+        
+        function drawPixelSnakeBody(x, y) {
+            const ctx = gameCtx;
+            const s = gridSize / 8;
+            
+            // Body base
+            ctx.fillStyle = '#ff9ecd';
+            ctx.fillRect(x + s, y + s, 6*s, 6*s);
+            
+            // Pattern
+            ctx.fillStyle = '#ff69b4';
+            ctx.fillRect(x + 2*s, y + 2*s, 2*s, 2*s);
+            ctx.fillRect(x + 4*s, y + 4*s, 2*s, 2*s);
+        }
+        
+        function snakeExplosion() {
+            const colors = ['#ff69b4', '#ff9ecd', '#ff1493', '#ffb6c1', '#fff', '#ffeb3b'];
+            const particles = [];
+            
+            // Create particles for each snake segment
+            snake.forEach(segment => {
+                const centerX = segment.x * gridSize + gridSize / 2;
+                const centerY = segment.y * gridSize + gridSize / 2;
+                const canvasRect = gameCanvas.getBoundingClientRect();
+                
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'explosion-particle';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.left = (canvasRect.left + centerX) + 'px';
+                    particle.style.top = (canvasRect.top + centerY) + 'px';
+                    document.body.appendChild(particle);
+                    
+                    const angle = (Math.PI * 2 / 8) * i;
+                    const speed = 5 + Math.random() * 5;
+                    const vx = Math.cos(angle) * speed;
+                    const vy = Math.sin(angle) * speed;
+                    
+                    particles.push({
+                        el: particle,
+                        x: canvasRect.left + centerX,
+                        y: canvasRect.top + centerY,
+                        vx: vx,
+                        vy: vy,
+                        life: 60
+                    });
+                }
+            });
+            
+            // Animate particles
+            function animateParticles() {
+                let alive = false;
+                particles.forEach(p => {
+                    if (p.life > 0) {
+                        alive = true;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += 0.3; // gravity
+                        p.life--;
+                        p.el.style.left = p.x + 'px';
+                        p.el.style.top = p.y + 'px';
+                        p.el.style.opacity = p.life / 60;
+                    }
+                });
+                
+                if (alive) {
+                    requestAnimationFrame(animateParticles);
+                } else {
+                    particles.forEach(p => p.el.remove());
+                    setTimeout(showCake, 500);
+                }
+            }
+            
+            animateParticles();
+            
+            setTimeout(() => {
+                gameContainer.classList.add('hidden');
+            }, 1000);
+        }
+        
+        // ===================== CAKE AND MICROPHONE =====================
+        let cakeCtx, candlesLit, audioContext, analyser, microphone;
+        
+        function showCake() {
+            cakeContainer.classList.remove('hidden');
+            cakeContainer.style.animation = 'popIn 0.5s ease-out';
+            
+            cakeCtx = cakeCanvas.getContext('2d');
+            candlesLit = true;
+            
+            drawCake();
+            requestMicrophone();
+        }
+        
+        function drawCake() {
+            const ctx = cakeCtx;
+            ctx.clearRect(0, 0, cakeCanvas.width, cakeCanvas.height);
+            
+            const s = 4; // pixel size
+            const centerX = 200;
+            const baseY = 320;
+            
+            // Plate
+            ctx.fillStyle = '#fff';
+            for (let i = 0; i < 50; i++) {
+                ctx.fillRect(centerX - 100 + i*s, baseY + 10, s, s);
+            }
+            ctx.fillStyle = '#ddd';
+            for (let i = 0; i < 48; i++) {
+                ctx.fillRect(centerX - 96 + i*s, baseY + 14, s, s);
+            }
+            
+            // Bottom layer
+            ctx.fillStyle = '#ff69b4';
+            for (let y = 0; y < 15; y++) {
+                for (let x = 0; x < 40; x++) {
+                    ctx.fillRect(centerX - 80 + x*s, baseY - y*s, s, s);
+                }
+            }
+            
+            // Bottom layer frosting edge
+            ctx.fillStyle = '#ff9ecd';
+            for (let x = 0; x < 40; x++) {
+                ctx.fillRect(centerX - 80 + x*s, baseY - 15*s, s, s*2);
+            }
+            
+            // Middle layer
+            ctx.fillStyle = '#ff1493';
+            for (let y = 0; y < 12; y++) {
+                for (let x = 0; x < 32; x++) {
+                    ctx.fillRect(centerX - 64 + x*s, baseY - 17*s - y*s, s, s);
+                }
+            }
+            
+            // Middle layer frosting
+            ctx.fillStyle = '#ffb6c1';
+            for (let x = 0; x < 32; x++) {
+                ctx.fillRect(centerX - 64 + x*s, baseY - 29*s, s, s*2);
+            }
+            
+            // Top layer
+            ctx.fillStyle = '#ff69b4';
+            for (let y = 0; y < 10; y++) {
+                for (let x = 0; x < 24; x++) {
+                    ctx.fillRect(centerX - 48 + x*s, baseY - 31*s - y*s, s, s);
+                }
+            }
+            
+            // Top frosting
+            ctx.fillStyle = '#fff';
+            for (let x = 0; x < 24; x++) {
+                ctx.fillRect(centerX - 48 + x*s, baseY - 41*s, s, s*2);
+                // Drip effect
+                if (x % 4 === 0) {
+                    ctx.fillRect(centerX - 48 + x*s, baseY - 39*s, s, s*3);
+                }
+            }
+            
+            // Decorative dots
+            ctx.fillStyle = '#ffeb3b';
+            for (let x = 0; x < 8; x++) {
+                ctx.fillRect(centerX - 60 + x*16, baseY - 8*s, s*2, s*2);
+            }
+            
+            // Candles
+            const candlePositions = [-32, -16, 0, 16, 32];
+            candlePositions.forEach((offset, i) => {
+                // Candle body
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(centerX + offset - s, baseY - 51*s, s*2, s*8);
+                
+                // Candle stripe
+                ctx.fillStyle = '#ff69b4';
+                ctx.fillRect(centerX + offset - s, baseY - 49*s, s*2, s*2);
+                ctx.fillRect(centerX + offset - s, baseY - 45*s, s*2, s*2);
+                
+                if (candlesLit) {
+                    // Flame
+                    ctx.fillStyle = '#ffeb3b';
+                    ctx.fillRect(centerX + offset - s, baseY - 55*s, s*2, s*3);
+                    ctx.fillStyle = '#ff6600';
+                    ctx.fillRect(centerX + offset, baseY - 54*s, s, s*2);
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(centerX + offset, baseY - 53*s, s, s);
+                    
+                    // Flame flicker animation
+                    if (Math.random() > 0.5) {
+                        ctx.fillStyle = '#ffeb3b';
+                        ctx.fillRect(centerX + offset - s*2, baseY - 54*s, s, s);
+                    }
+                }
+            });
+            
+            // "NINI" text on cake
+            ctx.fillStyle = '#fff';
+            ctx.font = '12px "Press Start 2P"';
+            ctx.textAlign = 'center';
+            ctx.fillText('yay', centerX, baseY - 20*s);
+            
+            // Hearts decoration
+            ctx.fillStyle = '#ff1493';
+            ctx.font = '16px "Press Start 2P"';
+            ctx.fillText('♥', centerX - 50, baseY - 22*s);
+            ctx.fillText('♥', centerX + 50, baseY - 22*s);
+            
+            if (candlesLit) {
+                requestAnimationFrame(drawCake);
+            }
+        }
+        
+        async function requestMicrophone() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                microphone = audioContext.createMediaStreamSource(stream);
+                microphone.connect(analyser);
+                analyser.fftSize = 256;
+                
+                detectBlow();
+            } catch (err) {
+                console.log('Microphone access denied');
+                document.getElementById('blowInstruction').textContent = '🎤 Click anywhere to blow out candles! 🎤';
+                document.addEventListener('click', blowOutCandles, { once: true });
+            }
+        }
+        
+        function detectBlow() {
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            const volumeBar = document.getElementById('volumeBar');
+            let blowThreshold = 80;
+            let blowDuration = 0;
+            
+            function checkVolume() {
+                if (!candlesLit) return;
+                
+                analyser.getByteFrequencyData(dataArray);
+                const average = dataArray.reduce((a, b) => a + b) / dataArray.length;
+                
+                volumeBar.style.width = Math.min(average / 2, 100) + '%';
+                
+                if (average > blowThreshold) {
+                    blowDuration++;
+                    if (blowDuration > 15) {
+                        blowOutCandles();
+                        return;
+                    }
+                } else {
+                    blowDuration = Math.max(0, blowDuration - 1);
+                }
+                
+                requestAnimationFrame(checkVolume);
+            }
+            
+            checkVolume();
+        }
+        
+        function blowOutCandles() {
+            candlesLit = false;
+            
+            // Clear the flames
+            drawCake();
+            
+            // Hide blow instruction
+            document.getElementById('blowInstruction').classList.add('hidden');
+            document.querySelector('.volume-meter').classList.add('hidden');
+            
+            // Create celebration
+            createBalloons();
+            createSparkles();
+            createHearts();
+            
+            // Show final message
+            setTimeout(() => {
+                document.getElementById('finalBirthdayMsg').classList.remove('hidden');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
